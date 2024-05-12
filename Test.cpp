@@ -1,3 +1,6 @@
+// ID: 326538022
+// Email: itay.alexandrov@gmail.com
+
 #include "doctest.h"
 #include "Algorithms.hpp"
 #include "Graph.hpp"
@@ -51,7 +54,7 @@ TEST_CASE("Test isContainsCycle")
         {1, 0, 1},
         {0, 1, 0}};
     g.loadGraph(graph);
-    CHECK(ariel::Algorithms::isContainsCycle(g) == false);
+    CHECK(ariel::Algorithms::isContainsCycle(g) == "0");
 
     vector<vector<int>> graph2 = {
         {0, 1, 1, 0, 0},
@@ -60,7 +63,7 @@ TEST_CASE("Test isContainsCycle")
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
     g.loadGraph(graph2);
-    CHECK(ariel::Algorithms::isContainsCycle(g) == true);
+    CHECK(ariel::Algorithms::isContainsCycle(g) != "0");
 }
 TEST_CASE("Test isBipartite")
 {

@@ -1,3 +1,6 @@
+// ID: 326538022
+// Email: itay.alexandrov@gmail.com
+
 /*
  * Demo program for Exercise 2.
  * Author: Benjamin Saldman.
@@ -40,7 +43,7 @@ int main()
 
     g.printGraph();                                    // Should print: "Graph with 5 vertices and 8 edges."
     cout << Algorithms::isConnected(g) << endl;        // Should print: "0" (false).
-    cout << Algorithms::shortestPath(g, 0, 4) << endl; // Should print: "-1" (there is no path between 0 and 4).
+    cout << Algorithms::shortestPath(g, 0, 4) << endl; // Should print: "-1" (there is no path between 0 and 4). (I made it so that it will print out "No path found!")
     cout << Algorithms::isContainsCycle(g) << endl;    // Should print: "The cycle is: 0->1->2->0".
     cout << Algorithms::isBipartite(g) << endl;        // Should print: "0" (false).
 
@@ -56,8 +59,8 @@ int main()
     g.printGraph();                                    // Should print: "Graph with 5 vertices and 10 edges."
     cout << Algorithms::isConnected(g) << endl;        // Should print: "1" (true).
     cout << Algorithms::shortestPath(g, 0, 4) << endl; // Should print: 0->2->3->4.
-    cout << Algorithms::isContainsCycle(g) << endl;    // Should print: "0" (false).
-    cout << Algorithms::isBipartite(g) << endl;        // Should print: "The graph is bipartite: A={0, 2, 4}, B={1, 3}."
+    cout << Algorithms::isContainsCycle(g) << endl;    // Should print: "The cycle is: 0->1->2". (before it was written that it should print: "0" (false) but as we can clearly see, there is a cycle between 0,1 and 2)
+    cout << Algorithms::isBipartite(g) << endl;        // Should print: "0" (false). (in the original Demo the answer was "The graph is bipartite: A={0, 2, 4}, B={1, 3}."  but points 0 and 2 are connected so its not possible for it to be bipartite)
 
     // 5x4 matrix that reprsents invalid graph.
     vector<vector<int>> graph4 = {
