@@ -1,29 +1,90 @@
-# מטלה 1 - גרפים (Classes and Namespaces)
+Graphs and Algorithms Library
 
-המטרה שלכם במטלה הזאת היא ליצור מחלקה שמייצגת גרף ולממש אלגוריתמים על הגרפים (זה הזמן להזכר בקורס אלגוריתמים 1).
+Description:
+-------------------------
+This library provides classes and algorithms for working with graphs. It includes a Graph class for representing graphs using an adjacency matrix, and various algorithms such as checking connectivity, finding shortest paths, detecting cycles, checking bipartiteness, and detecting negative weight cycles.
 
-במטלה הזאת הייצוג של הגרף שלכם יתבצע בעזרת מטריצת שכנויות - https://he.wikipedia.org/wiki/%D7%9E%D7%98%D7%A8%D7%99%D7%A6%D7%AA_%D7%A9%D7%9B%D7%A0%D7%95%D7%AA.
+Implementation:
+-------------------------
+1. Graph Class (Graph.hpp, Graph.cpp):
+   - The Graph class represents a graph using an adjacency matrix.
+   - The adjacency matrix is stored as a 2D vector.
+   - The class provides methods to:
+     - Construct a graph using a given adjacency matrix.
+     - Load a graph with a given adjacency matrix.
+     - Print the adjacency matrix of the graph.
+     - Get the number of vertices in the graph.
+     - Get the adjacency matrix of the graph.
 
-הגרף יכול להיות גרף מכוון ולא מכוון וגם גרף ממושקל. מטריצת השכנויות חייבת להיות מטריצה ריבועית.
+2. Algorithms Class (Algorithms.hpp, Algorithms.cpp):
+   - The Algorithms class provides various graph algorithms.
+   - The class includes static methods for:
+     - Checking connectivity of a graph using BFS.
+     - Finding the shortest path between two vertices using BFS.
+     - Detecting cycles in a graph using DFS.
+     - Checking if a graph is bipartite using BFS.
+     - Detecting negative weight cycles using Bellman-Ford algorithm.
+   
+Division of Code:
+-------------------------
+1. Graph Class:
+   - Graph.hpp: Header file containing the declaration of the Graph class.
+   - Graph.cpp: Source file containing the implementation of the Graph class.
 
-עליכם לכתוב את הקבצים הבאים:
+2. Algorithms Class:
+   - Algorithms.hpp: Header file containing the declaration of the Algorithms class.
+   - Algorithms.cpp: Source file containing the implementation of the Algorithms class.
 
-```
-Graph.cpp
-Algorithms.cpp
-```
+Functions:
+-------------------------
+1. isConnected(const Graph &g)
+   - Description: Checks if the graph is connected.
+   - Parameters: 
+     - g: Reference to a Graph object.
+   - Returns: 
+     - true if the graph is connected, false otherwise.
+   - How it Works:
+     - Uses Breadth First Search (BFS) to traverse the graph from a starting vertex.
+     - If all vertices are visited during the traversal, the graph is connected.
 
-הקובץ `Graph.cpp` מכיל מחלקה המייצגת גרף.
-המחלקה מכילה את הפעולות `loadGraph` המקבלת מטריצת שכנויות וטוענת אותה לתוך הגרף ו-`printGraph` שמדפיסה את הייצוג של הגרף (הפורמט לבחירתכם, ראו דוגמה ב-`Demo.cpp`).
+2. shortestPath(const Graph &g, int start, int end)
+   - Description: Finds the shortest path between two vertices using BFS.
+   - Parameters: 
+     - g: Reference to a Graph object.
+     - start: The starting vertex.
+     - end: The ending vertex.
+   - Returns: 
+     - A string representing the shortest path.
+   - How it Works:
+     - Uses Breadth First Search (BFS) to find the shortest path between two vertices.
+     - Computes the shortest path from the starting vertex to all other vertices and reconstructs the path to the destination vertex.
 
-הקובץ `Algorithms.cpp` מכיל מימושים לאלגוריתמים על גרפים. ביניהם:
+3. isContainsCycle(const Graph &g)
+   - Description: Checks if the graph contains a cycle.
+   - Parameters: 
+     - g: Reference to a Graph object.
+   - Returns: 
+     - A string representing the cycle if found, "0" otherwise.
+   - How it Works:
+     - Uses Depth First Search (DFS) to traverse the graph and detect cycles.
+     - If a back edge is encountered during the traversal, a cycle is detected.
 
-- `isConnected(g)` - האלגוריתם מקבל גרף ומחזיר 1 אם הגרף קשיר (אחרת מחזיר 0).
-- `shortestPath(g,start,end)` - האלגוריתם מקבל גרף, קודקוד התחלה וקודקוד סיום ומחזיר את המסלול הקל ביותר (במקרה שהגרף לא ממושקל - הקצר ביותר) בין שני הקודקודים. במידה ואין מסלול כזה, האלגוריתם יחזיר -1.
-- `isContainsCycle(g)` - האלגוריתם מקבל גרף ומדפיס מעגל כלשהו. אם לא קיים מעגל בגרף, האלגוריתם יחזיר 0.
-- `isBipartite(g)` - האלגוריתם מקבל גרף ומחזיר את החלוקה של הגרף לגרף דו-צדדי. אם אי אפשר לחלק את הגרף, האלגוריתם יחזיר 0.
-- `negativeCycle(g)` - האלגוריתם מקבל גרף ומוצא מעגל שלילי (כלומר מעגל שסכום המשקלים של הצלעות שלילי). אם לא קיים מעגל כזה, האלגוריתם ידפיס שלא קיים מעגל שלילי.
+4. isBipartite(const Graph &g)
+   - Description: Checks if the graph is bipartite.
+   - Parameters: 
+     - g: Reference to a Graph object.
+   - Returns: 
+     - A string indicating whether the graph is bipartite and its partition.
+   - How it Works:
+     - Uses Breadth First Search (BFS) to color the vertices of the graph with two colors.
+     - If at any point, two adjacent vertices have the same color, the graph is not bipartite.
 
-הקובץ `Demo.cpp` מכיל דוגמאות של קלטים ופלטים.
-עליכם לכתוב בתחילת כל קובץ את מספר תעודת הזהות שלכם ואת המייל. כמו כן, בנוסף לקבצים של המטלה אתם נדרשים להגיש גם קובץ README המתאר את אופן המימוש ואת החלוקה שביצעתם בקוד (סוג של מדריך משתמש). אי עמידה בהנחיות תגרור הפחתה בציון. בהצלחה!
-  
+5. negativeCycle(const Graph &g)
+   - Description: Checks if the graph contains a negative weight cycle.
+   - Parameters: 
+     - g: Reference to a Graph object.
+   - Returns: 
+     - true if the graph contains a negative weight cycle, false otherwise.
+   - How it Works:
+     - Uses Bellman-Ford algorithm to find the shortest paths from a single source vertex to all other vertices.
+     - If during the relaxation step, the distance to any vertex is updated after the |V| - 1th iteration, a negative weight cycle exists.
